@@ -16,7 +16,7 @@ def getNumberOfFilesInFolderRecursively(start_path = '.'):
             fp = os.path.join(dirpath, f)
             if(os.path.isfile(fp)):
                 numberOfFiles += 1
-                if numberOfFiles%1000 == 0:
+                if numberOfFiles%10000 == 0:
                     log("Je compte... " + str(numberOfFiles))
     return numberOfFiles
 
