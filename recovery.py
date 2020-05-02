@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 EXT_WHITELIST = ['mov', 'mp4', 'png', 'jpg', 'jpeg', 'pdf', 'xls', 'xlsx', 'docx', 'doc', 'ppt', 'pptx']
-
+apprx_nof = 1354072
+pct = int(apprx_nof/10)
 import os
 import os.path
 from time import localtime, strftime
@@ -16,8 +17,8 @@ def getNumberOfFilesInFolderRecursively(start_path = '.'):
             fp = os.path.join(dirpath, f)
             if(os.path.isfile(fp)):
                 numberOfFiles += 1
-                if numberOfFiles%10000 == 0:
-                    log("Je compte... " + str(numberOfFiles))
+                if numberOfFiles%pct == 0:
+                    log("Je compte... " + str(numberOfFiles) + " : " + str(numberOfFiles/pct) + " %")
     return numberOfFiles
 
 
@@ -109,7 +110,7 @@ for root, dirs, files in os.walk(source, topdown=False):
             log(str(fileCounter) + " / " + totalAmountToCopy + " processed.")
             
         extension = os.path.splitext(file)[1][1:].upper()
-        if extension.lower() not in EXTENSION_WHITELIST:
+        if extension.lower() not in EXT_WHITELIST:
             # print("ARTHUR: J'ignore " + extension)
             continue
         sourcePath = os.path.join(root, file)
