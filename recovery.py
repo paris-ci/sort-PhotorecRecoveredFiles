@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 EXT_WHITELIST = ['mov', 'mp4', 'png', 'jpg', 'jpeg', 'pdf', 'xls', 'xlsx', 'docx', 'doc', 'ppt', 'pptx']
 apprx_nof = 1354072
-pct = int(apprx_nof/10)
+pct = int(apprx_nof/100)
 import os
 import os.path
 from time import localtime, strftime
