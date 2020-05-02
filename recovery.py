@@ -103,9 +103,14 @@ fileCounter = 0
 for root, dirs, files in os.walk(source, topdown=False):
 
     for file in files:
+        fileCounter += 1
+        
+        if((fileCounter % onePercentFiles) is 0):
+            log(str(fileCounter) + " / " + totalAmountToCopy + " processed.")
+            
         extension = os.path.splitext(file)[1][1:].upper()
         if extension.lower() not in EXTENSION_WHITELIST:
-            print("ARTHUR: J'ignore " + extension)
+            # print("ARTHUR: J'ignore " + extension)
             continue
         sourcePath = os.path.join(root, file)
 
@@ -121,10 +126,6 @@ for root, dirs, files in os.walk(source, topdown=False):
         destinationFile = os.path.join(destinationDirectory, fileName)
         if not os.path.exists(destinationFile):
             shutil.copy2(sourcePath, destinationFile)
-
-        fileCounter += 1
-        if((fileCounter % onePercentFiles) is 0):
-            log(str(fileCounter) + " / " + totalAmountToCopy + " processed.")
 
 log("start special file treatment")
 jpgSorter.postprocessImages(os.path.join(destination, "JPG"), minEventDeltaDays, splitMonths)
