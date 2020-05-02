@@ -11,6 +11,8 @@ import numberOfFilesPerFolderLimiter
 
 
 def getNumberOfFilesInFolderRecursively(start_path = '.'):
+    if approx_nof != 0:
+        return approx_nof
     numberOfFiles = 0
     for dirpath, dirnames, filenames in os.walk(start_path):
         for f in filenames:
